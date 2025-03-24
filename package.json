@@ -1,0 +1,34 @@
+{
+  "name": "evaluacion_final_bis_celia",
+  "version": "0.0.1",
+  "description": "ejercicio final base de datos libros",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adalab/modulo-evaluacion-final-del-curso-bis-celia-r-revert.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "mysql",
+    "api",
+    "restful"
+  ],
+  "author": "Celia Recio Revert",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Adalab/modulo-evaluacion-final-del-curso-bis-celia-r-revert/issues"
+  },
+  "homepage": "https://github.com/Adalab/modulo-evaluacion-final-del-curso-bis-celia-r-revert#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mysql2": "^3.14.0"
+  }
+}
