@@ -76,22 +76,27 @@ app.post('/libros', async (req, res) => {
 
     const [results] = await conn.execute(`
         INSERT INTO libros (nombre, autora, paginas) 
-        VALUES (?, ?, ?, ?);`
-        [req.body.nombre, req.body.autora, parseInt(req.body.paginas, 10)]);
+        VALUES (?, ?, ?);`,
+        [req.body.nombre, req.body.autora, parseInt(req.body.paginas, 10)]
+    );
 
-  await conn.end();
+    res.json({
+      "success": true,
+      "id": results.insertId 
+    });
 
-  res.json({
-    "success": true,
-    "id": results.insertId 
-  });
-}
+    await conn.end();
+    return; 
+  }
+
 
   catch(err) {
+    console.log(err);
     res.status(500).json({
         "success": false,
         "message": err.toString()
-    })
+    });
+    return;
   }
 
 });
@@ -130,7 +135,6 @@ app.put('/libros/:id', async (req, res) => {
 
 //Quinto endpoint, eliminar un libro con petición DELETE
 app.delete('/libros/:id', async (req, res) => {
-  console.log(req.body);
   console.log(req.params.id); 
  
   //Condicionales para comprobar que vienen los parámetros obligatorios
@@ -138,10 +142,9 @@ app.delete('/libros/:id', async (req, res) => {
     const conn = await getConnection(); 
 
     const [results] = await conn.execute(`
-      UPDATE libros 
-        SET nombre=?, autora=?, paginas=?
+        DELETE FROM libros
         WHERE id=?;`,
-      [req.body.nombre, req.body.autora, parseInt(req.body.paginas, 10), req.params.id]
+      [req.params.id]
     );
 
   await conn.end();
